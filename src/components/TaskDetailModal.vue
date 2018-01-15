@@ -26,15 +26,13 @@
       <table>
         <tr>
           <td>
-            <Button v-if="bucket.next" style="align-self:flex-start;" type="warning" @click="handleChangeStatus('prev')">{{bucket.prev}}</Button>
-
+            <Button v-if="bucket.prev" style="align-self:flex-start;"  @click="handleChangeStatus('prev')">{{bucket.prev}}</Button>
           </td>
           <td style="text-align:center">
             <Button type="error" @click="handleDelete">Delete</Button>
-
           </td>
           <td style="text-align:right">
-            <Button v-if="bucket.prev" type="primary" @click="handleChangeStatus('next')">{{bucket.next}}</Button>
+            <Button v-if="bucket.next" @click="handleChangeStatus('next')">{{bucket.next}}</Button>
           </td>
         </tr>
       </table>
@@ -47,13 +45,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'TaskDetailModal',
   methods: {
-    handleDelete() {
+    handleDelete () {
       console.log(this.task['.key'])
       this.$store.dispatch('deleteTask', {
         key: this.task['.key']
       })
     },
-    handleChangeStatus(prevnext) {
+    handleChangeStatus (prevnext) {
       this.$store.dispatch('changeStatus', {
         key: this.task['.key'],
         to: prevnext === 'next' ? this.bucket.next : this.bucket.prev
@@ -63,10 +61,10 @@ export default {
   computed: {
     ...mapGetters(['task', 'bucket', 'tasks']),
     modalVisible: {
-      get() {
+      get () {
         return this.$store.getters['modalVisible']
       },
-      set() {
+      set () {
         this.$store.commit('hideModal')
       }
     }

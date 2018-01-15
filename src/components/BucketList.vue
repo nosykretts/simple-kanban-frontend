@@ -1,12 +1,14 @@
 <template>
-  <Col span="6">
-    <Card :bordered="false" shadow class="bucket-list-card">
-      <p slot="title">{{bucket.title}}</p>
-      <div style="min-height: 50px;">
-        <task-card v-for="task in bucket.tasks" :key="task['.key']" :task="task" :bucket="bucket"/>
-      </div>
-    </Card>
-  </Col>
+  <div>
+    <Col span="6">
+      <Card :bordered="false" shadow class="bucket-list-card">
+        <p slot="title">{{bucket.title}}</p>
+        <div style="min-height: 50px;">
+          <task-card v-for="task in bucket.tasks" :key="task['.key']" :task="task" :bucket="bucket"/>
+        </div>
+      </Card>
+    </Col>
+  </div>
 </template>
 
 <script>
@@ -20,7 +22,7 @@ export default {
 </script>
 
 <style>
-.bucket-list-card{
+.bucket-list-card{d
   background: #f3f3f3;
 }
 .bucket-list-card > .ivu-card-head{
