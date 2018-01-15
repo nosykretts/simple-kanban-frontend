@@ -30,13 +30,16 @@ export default {
         title: '',
         description: '',
         point: '',
-        assignedTo: ''
+        assignedTo: '',
+        status: 'backlog'
       }
     }
   },
   methods: {
     handleAddTask () {
-      console.log(this)
+      this.$store.dispatch('addTask', {
+        task: this.task
+      })
     }
   }
 }
@@ -46,7 +49,7 @@ export default {
 .new-task-menu-item {
   position: relative !important;
   float: right !important;
-  top: 17px;
+  top: 20px;
   right: 20px;
 }
 </style>

@@ -1,23 +1,34 @@
 <template>
   <Card class="task-card-item">
-    <p slot="title">Borderless card</p>
+    <p slot="title">{{task.title}}</p>
     <div>
-      <p>Point: 100</p>
-      <p>Assigned to: <span>Fajar Patappari</span></p>
-      <br><Button size="small" long type="ghost">Details</Button>
+      <p>Point: {{task.point}}</p>
+      <p>Assigned to: <span>{{task.assignedTo}}</span></p>
+      <br><Button size="small" long type="ghost" @click="openModal">Details</Button>
     </div>
   </Card>
 </template>
 
 <script>
+
 export default {
-  name: 'TaskCard'
+  name: 'TaskCard',
+  props: ['task', 'bucket'],
+  components: { },
+  methods: {
+    openModal () {
+      this.$store.commit('showModal', {
+        task: this.task,
+        bucket: this.bucket
+      })
+    }
+  }
 }
 </script>
 
 <style>
-.task-card-item {
-  margin-bottom: 10px;
+.task-card-item + .task-card-item {
+  margin-top: 10px;
 }
 .task-card-item p {
   font-weight: normal !important;

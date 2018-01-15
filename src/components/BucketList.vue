@@ -2,10 +2,8 @@
   <Col span="6">
     <Card :bordered="false" shadow class="bucket-list-card">
       <p slot="title">{{bucket.title}}</p>
-      <div style="min-height: 200px;">
-        <task-card/>
-        <task-card/>
-        <task-card/>
+      <div style="min-height: 50px;">
+        <task-card v-for="task in bucket.tasks" :key="task['.key']" :task="task" :bucket="bucket"/>
       </div>
     </Card>
   </Col>
