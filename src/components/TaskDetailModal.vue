@@ -52,10 +52,12 @@ export default {
       })
     },
     handleChangeStatus (prevnext) {
+
       this.$store.dispatch('changeStatus', {
         key: this.task['.key'],
         to: prevnext === 'next' ? this.bucket.next : this.bucket.prev
       })
+      
     }
   },
   computed: {

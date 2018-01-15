@@ -47,14 +47,17 @@ const actions = {
   }),
   addTask ({commit}, {task}) {
     tasksRef.push(task)
+    commit('hideModal')
   },
   changeStatus ({commit}, { key, to }) {
     tasksRef.child(key).update({
       status: to
     })
+    commit('hideModal')
   },
   deleteTask ({commit}, { key }) {
     tasksRef.child(key).remove()
+    commit('hideModal')
   }
 }
 

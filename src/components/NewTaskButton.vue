@@ -2,7 +2,7 @@
   <div>
     <Button @click="modalOpened=true" size="small" type="primary" class="new-task-menu-item" icon="plus" >New Task</Button>
     <Modal  v-model="modalOpened" title="New Task" ok-text="Save" cancel-text="Cancel" @on-ok="handleAddTask">
-      <Form  :model="task" label-position="top" >
+      <Form :model="task" label-position="top" >
         <FormItem label="Task name">
           <Input v-model="task.title"></Input>
         </FormItem>
@@ -10,7 +10,7 @@
           <Input type="textarea" v-model="task.description"></Input>
         </FormItem>
         <FormItem label="Point">
-          <Input v-model.number="task.point"></Input>
+          <InputNumber :max="100" :min="1" :step="5" v-model="task.point"></InputNumber>
         </FormItem>
         <FormItem label="Assigned to">
           <Input v-model="task.assignedTo"></Input>
@@ -29,7 +29,7 @@ export default {
       task: {
         title: '',
         description: '',
-        point: '',
+        point: 0,
         assignedTo: '',
         status: 'backlog'
       }
@@ -40,6 +40,7 @@ export default {
       this.$store.dispatch('addTask', {
         task: this.task
       })
+      this.task = {}
     }
   }
 }
