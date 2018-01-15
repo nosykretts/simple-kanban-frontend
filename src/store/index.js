@@ -49,9 +49,9 @@ const actions = {
     tasksRef.push(task)
   },
   changeStatus ({commit}, { key, to }) {
-    // tasksRef.child(key).update({
-
-    // })
+    tasksRef.child(key).update({
+      status: to
+    })
   },
   deleteTask ({commit}, { key }) {
     tasksRef.child(key).remove()
